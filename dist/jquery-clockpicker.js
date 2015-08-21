@@ -713,6 +713,8 @@
 
     //this.hide();
 
+    var date = moment().format('h:mm A');
+
     var newValue;
       var now = new Date(+new Date() + this.options.fromnow);
       var timeString  = (now.getHours() >= 12) ? 'PM' : 'AM';
@@ -722,7 +724,7 @@
         now.getMinutes()
       ];
 
-    this.hours = +newValue[0] || 0;
+    this.hours = +date.split(':')[0] || 0;
     this.minutes = +newValue[1] || 0;
     this.spanHours.html(leadingZero(this.hours));
     this.spanMinutes.html(leadingZero(this.minutes));
@@ -731,7 +733,7 @@
       this.spanAmPm.html(this.amOrPm);
 
     var last = this.input.prop('value'),
-      value = leadingZero(this.hours) + ':' + leadingZero(this.minutes);
+      value = this.hours + ':' + leadingZero(this.minutes);
     if (this.options.twelvehour) {
       value = value +' '+ this.amOrPm;
     }
