@@ -182,7 +182,7 @@
 
     if (options.setToday) {
       // If autoclose is not setted, append a button
-      $('<button type="button" class="btn btn-sm btn-default btn-block clockpicker-button today-button">' + options.donetext + '</button>')
+      $('<div type="button" class="today-button">' + options.donetext + '</div>')
         .click($.proxy(this.today, this))
         .appendTo(popover);
     }
