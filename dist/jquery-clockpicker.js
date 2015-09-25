@@ -48,6 +48,11 @@
     return (num < 10 ? '0' : '') + num;
   }
 
+  function leadingZeroInv(num) {
+    var data = parseInt(num);
+    return data+'';
+  }
+
   // Get a unique id
   var idCounter = 0;
   function uniqueId(prefix) {
@@ -392,7 +397,10 @@
     autoclose: false,    // auto close when minute is selected
     twelvehour: false, // change to 12 hour AM/PM clock from 24 hour
     vibrate: true,        // vibrate the device when dragging clock hand
-    setToday:false      //add today button to set today date
+    setToday:false,      //add today button to set today date
+    getModel: function(){
+
+    }
   };
 
   // Show or hide popover
@@ -491,6 +499,7 @@
     }
     this.hours = +value[0] || 0;
     this.minutes = +value[1].split(' ')[0] || 0;
+
     this.spanHours.html(leadingZero(this.hours));
     this.spanMinutes.html(leadingZero(this.minutes));
 
@@ -539,6 +548,13 @@
     this.popover.hide();
 
     raiseCallback(this.options.afterHide);
+
+    //update ngModel from clickpicker.directive
+    var hours = this.spanHours.html();
+    var min = this.spanMinutes.html();
+    var ampm = this.spanAmPm.html();
+
+    this.options.getModel(leadingZeroInv(hours)+':'+min+' '+ampm);
   };
 
   // Toggle to hours or minutes view
