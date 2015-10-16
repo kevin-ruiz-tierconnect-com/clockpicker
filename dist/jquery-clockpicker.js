@@ -53,6 +53,7 @@
     return data+'';
   }
 
+  //
   // Get a unique id
   var idCounter = 0;
   function uniqueId(prefix) {
@@ -531,6 +532,12 @@
         self.hide();
       }
     });
+
+    //update ngModel from clickpicker.directive
+    var hours = this.spanHours.html();
+    var min = this.spanMinutes.html();
+    var ampm = this.spanAmPm.html();
+    this.options.getModel(leadingZeroInv(hours)+':'+min+' '+ampm);
 
     raiseCallback(this.options.afterShow);
   };
