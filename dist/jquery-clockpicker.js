@@ -53,7 +53,6 @@
     return data+'';
   }
 
-  //
   // Get a unique id
   var idCounter = 0;
   function uniqueId(prefix) {
@@ -537,6 +536,7 @@
     var hours = this.spanHours.html();
     var min = this.spanMinutes.html();
     var ampm = this.spanAmPm.html();
+
     this.options.getModel(leadingZeroInv(hours)+':'+min+' '+ampm);
 
     raiseCallback(this.options.afterShow);
